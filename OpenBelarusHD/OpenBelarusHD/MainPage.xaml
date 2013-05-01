@@ -93,7 +93,7 @@
                     <ColumnDefinition Width="902*"/>
                 </Grid.ColumnDefinitions>
                 <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}" Margin="36,0,0,36"/>
-                <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource MyTexBlockStyle}" Margin="89,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="111"/>
+                <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource MyTexBlockStyle}" Margin="101,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="111"/>
             </Grid>
 
         </Grid>
