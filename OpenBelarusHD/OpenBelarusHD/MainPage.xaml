@@ -8,12 +8,13 @@
     xmlns:common="using:OpenBelarusHD.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Width="1364">
+    mc:Ignorable="d" Width="1364" Background="Black">
 
     <Page.Resources>
 
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
         <x:String x:Key="AppName">Open Belarus HD</x:String>
+        <x:String x:Key="ExampleTextCaption">Mirsky Castle</x:String>
     </Page.Resources>
 
     <!--
@@ -21,7 +22,11 @@
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
     -->
-    <StackPanel x:Name="mainStackPanel" HorizontalAlignment="Left" Width="1845" Margin="0,0,-3,0" Height="768" VerticalAlignment="Top" Orientation="Horizontal" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Auto">
+    <Grid Background="{StaticResource MainFonBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
         <VisualStateManager.VisualStateGroups>
             <!-- Visual states reflect the application's view state -->
             <VisualStateGroup x:Name="ApplicationViewStates">
@@ -66,14 +71,27 @@
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
     -->
-        <Border x:Name="border" BorderBrush="Black" BorderThickness="1" Width="1128" HorizontalAlignment="Left">
-            <Image x:Name="mainImage" Source="Assets/MirskyZamok/0.JPG" Margin="0,64" RenderTransformOrigin="0.5,0.5" Stretch="Fill">
-                <Image.RenderTransform>
-                    <CompositeTransform ScaleY="1.2"/>
-                </Image.RenderTransform>
-            </Image>
-        </Border>
-        <Grid Style="{StaticResource LayoutRootStyle}" Margin="0" RenderTransformOrigin="0.5,0.5" Width="1139" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" Margin="0,0,10,0">
+
+            <!--
+        This grid acts as a root panel for the page that defines two rows:
+        * Row 0 contains the back button and page title
+        * Row 1 contains the rest of the page layout
+    -->
+            <StackPanel x:Name="mainStackPanel" HorizontalAlignment="Left" Width="2208" Height="768" VerticalAlignment="Top" Orientation="Horizontal" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Auto" Background="{StaticResource MainFonBrush}">
+                <Grid Height="768" Width="1852">
+                    <Border x:Name="border" BorderBrush="Black" BorderThickness="1" Width="1128" HorizontalAlignment="Left" Margin="0,0,0,-668">
+                        <Image x:Name="mainImage" Source="Assets/MirskyZamok/0.JPG" Margin="-6,63,-36,730" RenderTransformOrigin="0.5,0.5" Stretch="Fill">
+                            <Image.RenderTransform>
+                                <CompositeTransform ScaleY="1.2"/>
+                            </Image.RenderTransform>
+                        </Image>
+                    </Border>
+                    <TextBlock x:Name="MainPictureName" Margin="105,573,0,0" TextWrapping="Wrap" Text="{StaticResource ExampleTextCaption}" VerticalAlignment="Top" Width="444" Height="73" HorizontalAlignment="Left" FontSize="72" Foreground="#FFD7F515" FontFamily="Segoe UI Light" FontWeight="Thin"/>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+        <Grid Style="{StaticResource LayoutRootStyle}" Margin="6,0,0,0" RenderTransformOrigin="0.5,0.5" Width="1139" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" Height="140">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="359*"/>
                 <ColumnDefinition Width="780*"/>
@@ -86,16 +104,15 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Back button and page title -->
             <Grid Canvas.ZIndex="1" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="237*"/>
                     <ColumnDefinition Width="902*"/>
                 </Grid.ColumnDefinitions>
                 <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}" Margin="36,0,0,36"/>
-                <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource MyTexBlockStyle}" Margin="101,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="111"/>
+                <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource MyTexBlockStyle}" Margin="89,56,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="48" Width="433" FontFamily="Segoe UI Light" FontSize="48" Grid.ColumnSpan="2" FontWeight="Thin"/>
             </Grid>
 
         </Grid>
-    </StackPanel>
+    </Grid>
 </common:LayoutAwarePage>
